@@ -27,14 +27,14 @@
                                 <rect key="frame" x="0.0" y="521" width="375" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <segue destination="F71-YD-8jO" kind="push" id="kA9-Nr-bpc"/>
+                                    <action selector="onTouchRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nsn-EC-UjH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-OL-1ss">
                                 <rect key="frame" x="0.0" y="598" width="375" height="30"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
-                                    <segue destination="aVl-Y1-T6V" kind="push" id="M03-X7-w6i"/>
+                                    <action selector="onTouchLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sZa-di-a4H"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -58,21 +58,67 @@
             </objects>
             <point key="canvasLocation" x="368.80000000000001" y="100.29985007496252"/>
         </scene>
-        <!--View Controller-->
+        <!--Register-->
         <scene sceneID="jtP-UP-byI">
             <objects>
-                <viewController id="F71-YD-8jO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewControllerCV" id="F71-YD-8jO" customClass="RegisterViewController" customModule="chat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FxR-Ot-RWQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AAw-BI-5nf">
+                                <rect key="frame" x="22" y="55" width="331" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4DH-9Q-cl6">
+                                <rect key="frame" x="22" y="120" width="331" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVP-P9-y9f">
+                                <rect key="frame" x="22" y="185" width="331" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqs-L1-8SJ">
+                                <rect key="frame" x="159" y="250" width="57" height="30"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerPressed:" destination="F71-YD-8jO" eventType="touchUpInside" id="AUm-A7-6fC"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9mW-zD-Kbf" firstAttribute="trailing" secondItem="kqs-L1-8SJ" secondAttribute="trailing" constant="159" id="KMV-H4-KdQ"/>
+                            <constraint firstItem="UVP-P9-y9f" firstAttribute="leading" secondItem="9mW-zD-Kbf" secondAttribute="leading" constant="22" id="PaQ-wh-jre"/>
+                            <constraint firstItem="4DH-9Q-cl6" firstAttribute="leading" secondItem="9mW-zD-Kbf" secondAttribute="leading" constant="22" id="Tcp-r8-iKf"/>
+                            <constraint firstItem="AAw-BI-5nf" firstAttribute="top" secondItem="9mW-zD-Kbf" secondAttribute="top" constant="35" id="ebb-5C-tfa"/>
+                            <constraint firstItem="9mW-zD-Kbf" firstAttribute="trailing" secondItem="UVP-P9-y9f" secondAttribute="trailing" constant="22" id="gUx-YD-SaS"/>
+                            <constraint firstItem="kqs-L1-8SJ" firstAttribute="leading" secondItem="9mW-zD-Kbf" secondAttribute="leading" constant="159" id="kaD-nN-0an"/>
+                            <constraint firstItem="4DH-9Q-cl6" firstAttribute="top" secondItem="AAw-BI-5nf" secondAttribute="bottom" constant="35" id="myF-Jf-AMO"/>
+                            <constraint firstItem="9mW-zD-Kbf" firstAttribute="trailing" secondItem="AAw-BI-5nf" secondAttribute="trailing" constant="22" id="oL0-kc-h1W"/>
+                            <constraint firstItem="9mW-zD-Kbf" firstAttribute="trailing" secondItem="4DH-9Q-cl6" secondAttribute="trailing" constant="22" id="quA-Pg-DJM"/>
+                            <constraint firstItem="AAw-BI-5nf" firstAttribute="leading" secondItem="9mW-zD-Kbf" secondAttribute="leading" constant="22" id="qyW-R6-ujr"/>
+                            <constraint firstItem="UVP-P9-y9f" firstAttribute="top" secondItem="4DH-9Q-cl6" secondAttribute="bottom" constant="35" id="vSs-3G-MVq"/>
+                            <constraint firstItem="kqs-L1-8SJ" firstAttribute="top" secondItem="UVP-P9-y9f" secondAttribute="bottom" constant="35" id="yB7-Sv-eEk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9mW-zD-Kbf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Tat-bl-sX3"/>
+                    <navigationItem key="navigationItem" title="Register" id="Tat-bl-sX3"/>
+                    <connections>
+                        <outlet property="emailTextfield" destination="AAw-BI-5nf" id="wfW-j9-Yuy"/>
+                        <outlet property="nameTextfield" destination="UVP-P9-y9f" id="ubg-ec-Ro2"/>
+                        <outlet property="passwordTextfield" destination="4DH-9Q-cl6" id="Ats-w3-fJf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKd-2t-p5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1223" y="489"/>
+            <point key="canvasLocation" x="1221.5999999999999" y="488.90554722638683"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Q5f-32-RBm">

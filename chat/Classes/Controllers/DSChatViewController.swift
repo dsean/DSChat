@@ -19,7 +19,13 @@ class DSChatViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    @IBAction func onTouchRegisterButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = (storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerCV") as? RegisterViewController)!
+        detailViewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    @IBAction func onTouchLoginButton(_ sender: Any) {
+    }
 }
 
