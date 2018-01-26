@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		2C8B508FAEF4CB001599EE88 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F9ADD259D64499CFCDA099 /* Pods_chat.framework */; };
 		9F0474E9201B705D0094FE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0474E8201B705D0094FE8C /* AppDelegate.swift */; };
-		9F0474EB201B705D0094FE8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0474EA201B705D0094FE8C /* ViewController.swift */; };
 		9F0474EE201B705D0094FE8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0474EC201B705D0094FE8C /* Main.storyboard */; };
 		9F0474F0201B705D0094FE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F0474EF201B705D0094FE8C /* Assets.xcassets */; };
 		9F0474F3201B705D0094FE8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0474F1201B705D0094FE8C /* LaunchScreen.storyboard */; };
 		9F0474FE201B705D0094FE8C /* chatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0474FD201B705D0094FE8C /* chatTests.swift */; };
+		9F04750B201B7A250094FE8C /* DSChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04750A201B7A250094FE8C /* DSChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +31,6 @@
 		646F342774163535587966D7 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		9F0474E5201B705D0094FE8C /* chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0474E8201B705D0094FE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9F0474EA201B705D0094FE8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9F0474ED201B705D0094FE8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F0474EF201B705D0094FE8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F0474F2201B705D0094FE8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +38,7 @@
 		9F0474F9201B705D0094FE8C /* chatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = chatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0474FD201B705D0094FE8C /* chatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTests.swift; sourceTree = "<group>"; };
 		9F0474FF201B705D0094FE8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F04750A201B7A250094FE8C /* DSChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSChatViewController.swift; sourceTree = "<group>"; };
 		D304923AB6C6910E173E5A67 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,8 +92,8 @@
 		9F0474E7201B705D0094FE8C /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				9F047508201B7A250094FE8C /* Classes */,
 				9F0474E8201B705D0094FE8C /* AppDelegate.swift */,
-				9F0474EA201B705D0094FE8C /* ViewController.swift */,
 				9F0474EC201B705D0094FE8C /* Main.storyboard */,
 				9F0474EF201B705D0094FE8C /* Assets.xcassets */,
 				9F0474F1201B705D0094FE8C /* LaunchScreen.storyboard */,
@@ -109,6 +109,22 @@
 				9F0474FF201B705D0094FE8C /* Info.plist */,
 			);
 			path = chatTests;
+			sourceTree = "<group>";
+		};
+		9F047508201B7A250094FE8C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9F047509201B7A250094FE8C /* Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9F047509201B7A250094FE8C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F04750A201B7A250094FE8C /* DSChatViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C67943AF83368A9343003366 /* Pods */ = {
@@ -290,7 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F0474EB201B705D0094FE8C /* ViewController.swift in Sources */,
+				9F04750B201B7A250094FE8C /* DSChatViewController.swift in Sources */,
 				9F0474E9201B705D0094FE8C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
