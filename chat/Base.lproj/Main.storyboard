@@ -88,7 +88,7 @@
                                 <rect key="frame" x="159" y="250" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="registerPressed:" destination="F71-YD-8jO" eventType="touchUpInside" id="AUm-A7-6fC"/>
+                                    <action selector="onTouchRegisterButton:" destination="F71-YD-8jO" eventType="touchUpInside" id="VX3-5R-dPl"/>
                                 </connections>
                             </button>
                         </subviews>

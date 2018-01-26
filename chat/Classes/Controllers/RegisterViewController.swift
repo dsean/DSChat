@@ -10,7 +10,7 @@ import Firebase
 import SVProgressHUD
 
 class RegisterViewController: UIViewController {
-    //Pre-linked IBOutlets
+    // Pre-linked IBOutlets
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     @IBOutlet var nameTextfield: UITextField!
@@ -23,22 +23,31 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func registerPressed(_ sender: AnyObject) {
+    
+    @IBAction func onTouchRegisterButton(_ sender: AnyObject) {
         SVProgressHUD.show()
+        
+        // Register with email and password.
+        
         Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: { (user, error) in
             if error != nil {
-                SVProgressHUD.dismiss()
+                
+                // Register fail.
                 print(error!)
-            } else {
-                //success
+            }
+            else {
+                
+                // Register success.
                 print("Registration successful!")
-                if let user = Auth.auth().currentUser{
+                if let user = Auth.auth().currentUser {
+                    // Save Register id and username
                     Database.database().reference(withPath: "ID/\(user.uid)/Profile/Name").setValue(self.nameTextfield.text!)
                 }
-                SVProgressHUD.dismiss()
                 
+                // Login and go to chat View.
                /* self.performSegue(withIdentifier: "goToChat", sender: self)*/
             }
+            SVProgressHUD.dismiss()
         })
     }
 }
