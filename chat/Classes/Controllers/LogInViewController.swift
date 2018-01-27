@@ -50,7 +50,7 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func onTouchLoginButton(_ sender: AnyObject) {
-        login()
+        login(email: emailTextfield.text!, password: passwordTextfield.text!)
     }
     
     // MARK: function
@@ -60,14 +60,14 @@ class LogInViewController: UIViewController {
         self.passwordTextfield.resignFirstResponder()
     }
     
-    func login() {
+    func login(email:String, password:String) {
         SVProgressHUD.show()
         self.messageLabel.text = ""
         dissmissKeyboad()
-        if Utilities.checkEmail(email: emailTextfield.text!) && Utilities.checkPassword(password: passwordTextfield.text!) {
+        if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) {
             
             // Login with email and password.
-            Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error != nil {
                     
                     // Login fail.
