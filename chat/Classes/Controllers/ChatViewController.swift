@@ -11,23 +11,25 @@ import Firebase
 import ChameleonFramework
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    var messageArray: [Message] = [Message]()
     
+    //Pre-linked with IBOutlets
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var messageTextfield: UITextField!
     @IBOutlet var messageTableView: UITableView!
     
+    var messageArray: [Message] = [Message]()
     var name = ""
     var user = Auth.auth().currentUser
+    
+    // MARK: lifCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        updateUsername()
         
-        Database.database().reference(withPath: "ID/\(self.user!.uid)/Profile/Name").observe(.value, with: { (snapshot) in
-            self.name = snapshot.value as! String
-        })
+        self.navigationItem.setHidesBackButton(true, animated:true);
         
         messageTableView.delegate = self
         messageTableView.dataSource = self
@@ -53,6 +55,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.senderUsername.text = messageArray[indexPath.row].sender
         
+        // TODO:If username is same. we can't check the message is my message or not. use uid.
         if cell.senderUsername.text == self.name {
             cell.messageBackground.backgroundColor = UIColor.flatSkyBlue()
         } else {
@@ -91,6 +94,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //MARK: - Send & Recieve from Firebase
+    
+    func updateUsername() {
+        Database.database().reference(withPath: "ID/\(self.user!.uid)/Profile/Name").observe(.value, with: { (snapshot) in
+            self.name = snapshot.value as! String
+        })
+    }
     
     func retrieveMessages() {
         let messageDB = Database.database().reference().child("Messages")

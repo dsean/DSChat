@@ -19,6 +19,7 @@ class LogInViewController: UIViewController {
     
     //UILabel pre-linked with IBOutlets
     @IBOutlet weak var messageLabel: UILabel!
+    
     // MARK: lifCycle
     
     override func viewDidLoad() {

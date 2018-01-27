@@ -21,6 +21,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: lifCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
