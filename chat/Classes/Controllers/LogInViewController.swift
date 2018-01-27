@@ -15,6 +15,8 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
+    //UILabel pre-linked with IBOutlets
+    @IBOutlet weak var messageLabel: UILabel!
     // MARK: lifCycle
     
     override func viewDidLoad() {
@@ -45,21 +47,45 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func onTouchLoginButton(_ sender: AnyObject) {
+        login()
+    }
+    
+    // MARK: function
+    
+    func dissmissKeyboad() {
+        self.emailTextfield.resignFirstResponder()
+        self.passwordTextfield.resignFirstResponder()
+    }
+    
+    func login() {
         SVProgressHUD.show()
-        
-        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: { (user, error) in
-            if error != nil {
-                print(error!)
-                
-                
-            }
-            else {
-                print("Login successful")
-                
-                // Login and go to chat View.
-            }
+        self.messageLabel.text = ""
+        dissmissKeyboad()
+        if Utilities.checkEmail(email: emailTextfield.text!) && Utilities.checkPassword(password: passwordTextfield.text!) {
             
+            // Login with email and password.
+            Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: { (user, error) in
+                if error != nil {
+                    
+                    // Login fail.
+                    print(error!)
+                    
+                    self.messageLabel.text = "Invalid email or password"
+                }
+                else {
+                    
+                    // Login success.
+                    print("Login successful")
+                    
+                    // Login and go to chat View.
+                }
+                SVProgressHUD.dismiss()
+            })
+        }
+        else {
+            print("Invalid email or password")
+            messageLabel.text = "Invalid email or password"
             SVProgressHUD.dismiss()
-        })
+        }
     }
 }  
