@@ -11,7 +11,14 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class RegisterViewController: UIViewController {
+protocol RegisterViewControllerDelegate {
+    func onRegister(isSuccess:Bool)
+}
+
+class RegisterViewController: UIViewController, RegisterViewControllerDelegate {
+    
+    var delegate:RegisterViewControllerDelegate?
+    
     // Textfields Pre-linked IBOutlets
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
@@ -20,10 +27,13 @@ class RegisterViewController: UIViewController {
     // UILabel Pre-linked IBOutlets
     @IBOutlet weak var messageLabel: UILabel!
     
+    var errorMessage:String! = ""
+    
     // MARK: lifCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +68,9 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func onTouchRegisterButton(_ sender: AnyObject) {
+        SVProgressHUD.show()
+        self.messageLabel.text = ""
+        dissmissKeyboad()
         register()
     }
     
@@ -70,9 +83,6 @@ class RegisterViewController: UIViewController {
     }
     
     func register() {
-        SVProgressHUD.show()
-        self.messageLabel.text = ""
-        dissmissKeyboad()
         if Utilities.checkEmail(email: emailTextfield.text!) && Utilities.checkPassword(password: passwordTextfield.text!) && Utilities.checkUsername(username: self.nameTextfield.text!) {
             
             // Register with email and password.
@@ -82,26 +92,37 @@ class RegisterViewController: UIViewController {
                     // Register fail.
                     print(error!)
                     
-                    self.messageLabel.text = "Invalid email , password or username"
+                    self.errorMessage = "Invalid email , password or username"
+                    self.delegate?.onRegister(isSuccess: false)
                 }
                 else {
-                    
-                    // Register success.
-                    print("Registration successful!")
-                    if let user = Auth.auth().currentUser {
-                        // Save Register id and username
-                        Database.database().reference(withPath: "ID/\(user.uid)/Profile/Name").setValue(self.nameTextfield.text!)
-                    }
-                    
-                    // Login and go to chat View.
-                    Utilities.goToChatView(controller:self)
+                    self.errorMessage = ""
+                    self.delegate?.onRegister(isSuccess: true)
                 }
-                SVProgressHUD.dismiss()
             })
         }
         else {
             print("Invalid email , password or username")
-            messageLabel.text = "Invalid email , password or username"
+            self.errorMessage = "Invalid email , password or username"
+            self.delegate?.onRegister(isSuccess: false)
+        }
+    }
+    
+    func onRegister(isSuccess:Bool) {
+        DispatchQueue.main.async {
+            if isSuccess {
+                
+                // Register success.
+                print("Registration successful!")
+                if let user = Auth.auth().currentUser {
+                    // Save Register id and username
+                    Database.database().reference(withPath: "ID/\(user.uid)/Profile/Name").setValue(self.nameTextfield.text!)
+                }
+                
+                // Login and go to chat View.
+                Utilities.goToChatView(controller:self)
+            }
+            self.messageLabel.text = self.errorMessage
             SVProgressHUD.dismiss()
         }
     }
