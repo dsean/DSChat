@@ -23,6 +23,8 @@
 		9F927135201C4867009BD64B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F927132201C4866009BD64B /* Message.swift */; };
 		9F927137201C48B5009BD64B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F927136201C48B5009BD64B /* ChatViewController.swift */; };
 		9F927146201C60F2009BD64B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F0474FF201B705D0094FE8C /* Info.plist */; };
+		9F927147201C7931009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0474EC201B705D0094FE8C /* Main.storyboard */; };
+		9F927148201C84B2009BD64B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F04750E201B7D580094FE8C /* GoogleService-Info.plist */; };
 		B426E5785A51B5DA02EEE8DE /* Pods_chatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D7FE9FEFF4A778D6439ACC /* Pods_chatTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +309,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F927146201C60F2009BD64B /* Info.plist in Resources */,
+				9F927147201C7931009BD64B /* Main.storyboard in Resources */,
+				9F927148201C84B2009BD64B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

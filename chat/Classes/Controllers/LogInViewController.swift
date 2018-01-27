@@ -11,8 +11,14 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class LogInViewController: UIViewController {
+protocol LogInViewControllerDelegate {
+    func onLogin(isSuccess:Bool)
+}
 
+class LogInViewController: UIViewController, LogInViewControllerDelegate {
+
+    var delegate:LogInViewControllerDelegate?
+    
     //Textfields pre-linked with IBOutlets
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
@@ -20,11 +26,13 @@ class LogInViewController: UIViewController {
     //UILabel pre-linked with IBOutlets
     @IBOutlet weak var messageLabel: UILabel!
     
+    var errorMessage:String! = ""
+    
     // MARK: lifCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +58,9 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func onTouchLoginButton(_ sender: AnyObject) {
+        SVProgressHUD.show()
+        self.messageLabel.text = ""
+        dissmissKeyboad()
         login(email: emailTextfield.text!, password: passwordTextfield.text!)
     }
     
@@ -61,34 +72,41 @@ class LogInViewController: UIViewController {
     }
     
     func login(email:String, password:String) {
-        SVProgressHUD.show()
-        self.messageLabel.text = ""
-        dissmissKeyboad()
+        
         if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) {
             
             // Login with email and password.
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error != nil {
-                    
+    
                     // Login fail.
                     print(error!)
-                    
-                    self.messageLabel.text = "Invalid email or password"
+                    self.errorMessage = "Invalid email or password"
+                    self.delegate?.onLogin(isSuccess: false)
                 }
                 else {
                     
                     // Login success.
                     print("Login successful")
-                    
-                    // Login and go to chat View.
-                    Utilities.goToChatView(controller:self)
+                    self.errorMessage = ""
+                    self.delegate?.onLogin(isSuccess: true)
                 }
-                SVProgressHUD.dismiss()
             })
         }
         else {
-            print("Invalid email or password")
-            messageLabel.text = "Invalid email or password"
+            self.errorMessage = "Invalid email or password"
+            self.delegate?.onLogin(isSuccess: false)
+        }
+    }
+    
+    func onLogin(isSuccess:Bool) {
+        DispatchQueue.main.async {
+            if isSuccess {
+                
+                // Login and go to chat View.
+                Utilities.goToChatView(controller:self)
+            }
+            self.messageLabel.text = self.errorMessage
             SVProgressHUD.dismiss()
         }
     }
