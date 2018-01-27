@@ -32,4 +32,20 @@ class chatTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testCheckPassword() {
+        XCTAssertTrue(Utilities.checkPassword(password:"abtZsq"))
+        XCTAssertTrue(Utilities.checkPassword(password:"123456abcdefghijklmnopqrstuvwxyz"))
+        XCTAssertFalse(Utilities.checkPassword(password:"0123456abcdefghijklmnopqrstuvwxyz"))
+        XCTAssertFalse(Utilities.checkPassword(password:"123"))
+        XCTAssertFalse(Utilities.checkPassword(password:"!~#+"))
+    }
+    
+    func testCheckUsername() {
+        XCTAssertTrue(Utilities.checkUsername(username: "一"))
+        XCTAssertTrue(Utilities.checkUsername(username: "123456abcdefghijklmnopqrstuvwxyz"))
+        XCTAssertFalse(Utilities.checkUsername(username: "123456abcdefghijklmnopqrstuvwxyz"))
+        XCTAssertFalse(Utilities.checkUsername(username: ""))
+        XCTAssertFalse(Utilities.checkUsername(username: "!~#+"))
+    }
 }
