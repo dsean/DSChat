@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class Utilities: NSObject {
 
@@ -71,5 +71,13 @@ class Utilities: NSObject {
             print("invalid regex: \(error.localizedDescription)")
             return []
         }
+    }
+    
+    class func goToChatView(controller:UIViewController) {
+        // Go to ChatViewController.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = (storyboard.instantiateViewController(withIdentifier: "ChatViewControllerCV") as? ChatViewController)!
+        detailViewController.hidesBottomBarWhenPushed = true
+        controller.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

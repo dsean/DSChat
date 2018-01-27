@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DSChatViewController.swift
 //  chat
 //
 //  Created by 楊德忻 on 2018/1/26.
@@ -11,6 +11,7 @@ import UIKit
 class DSChatViewController: UIViewController {
     
     // MARK: lifCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,6 +23,7 @@ class DSChatViewController: UIViewController {
     }
     
     // MARK: Action
+    
     @IBAction func onTouchRegisterButton(_ sender: Any) {
         
         // Go to RegisterViewController on touch Register button.
