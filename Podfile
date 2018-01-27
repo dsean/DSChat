@@ -12,3 +12,13 @@ target 'chat' do
   pod ’SVProgressHUD’
   pod ‘ChameleonFramework’
 end
+target 'chatTests' do
+use_frameworks!
+
+  # Pods for chatTests
+  pod ‘Firebase’
+  pod ‘Firebase/Auth’
+  pod ‘Firebase/Database’
+  pod ’SVProgressHUD’
+  pod ‘ChameleonFramework’
+end
