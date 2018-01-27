@@ -1,6 +1,8 @@
 //
-//  LogInViewController.swift
-//  Flash Chat
+//  chat
+//
+//  Created by 楊德忻 on 2018/1/26.
+//  Copyright © 2018年 sean. All rights reserved.
 //
 //  This is the view controller where users login
 
@@ -78,6 +80,7 @@ class LogInViewController: UIViewController {
                     print("Login successful")
                     
                     // Login and go to chat View.
+                    Utilities.goToChatView(controller:self)
                 }
                 SVProgressHUD.dismiss()
             })

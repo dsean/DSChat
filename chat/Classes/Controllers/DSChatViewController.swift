@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DSChatViewController.swift
 //  chat
 //
 //  Created by 楊德忻 on 2018/1/26.
