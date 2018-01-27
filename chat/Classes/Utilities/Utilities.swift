@@ -44,9 +44,6 @@ class Utilities: NSObject {
     }
     
     class func checkEmail(email:String) -> Bool {
-        if email.count < 1 || email.count > 32 {
-            return false
-        }
         
         let mailPattern = "^[A-Za-z0-9._-]+@[a-z0-9.-]+.[a-z]{2,4}$"
         let results = Utilities.matches(for: mailPattern, in: email)

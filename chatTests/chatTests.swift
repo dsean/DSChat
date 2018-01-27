@@ -44,8 +44,16 @@ class chatTests: XCTestCase {
     func testCheckUsername() {
         XCTAssertTrue(Utilities.checkUsername(username: "一"))
         XCTAssertTrue(Utilities.checkUsername(username: "123456abcdefghijklmnopqrstuvwxyz"))
-        XCTAssertFalse(Utilities.checkUsername(username: "123456abcdefghijklmnopqrstuvwxyz"))
+        XCTAssertFalse(Utilities.checkUsername(username: "0123456abcdefghijklmnopqrstuvwxyz"))
         XCTAssertFalse(Utilities.checkUsername(username: ""))
         XCTAssertFalse(Utilities.checkUsername(username: "!~#+"))
+    }
+    
+    func testCheckEmail() {
+        XCTAssertTrue(Utilities.checkEmail(email:"a1@gmail.com"))
+        XCTAssertTrue(Utilities.checkEmail(email:"A1@gmail.com"))
+        XCTAssertFalse(Utilities.checkEmail(email: "a1@gmail.A"))
+        XCTAssertFalse(Utilities.checkEmail(email: "a1gmail.com"))
+        XCTAssertFalse(Utilities.checkEmail(email: ""))
     }
 }
