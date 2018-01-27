@@ -10,11 +10,12 @@ import Firebase
 import SVProgressHUD
 
 class RegisterViewController: UIViewController {
-    // Pre-linked IBOutlets
+    // Textfields Pre-linked IBOutlets
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     @IBOutlet var nameTextfield: UITextField!
     
+    // MARK: lifCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,6 +24,29 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: Action
+    
+    // Dissmiss keyboad on touch began.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.emailTextfield.resignFirstResponder()
+        self.passwordTextfield.resignFirstResponder()
+        self.nameTextfield.resignFirstResponder()
+    }
+    
+    // Focus on password on touch return button.
+    @IBAction func emailDidEndOnExit(_ sender: UITextField) {
+        self.passwordTextfield.becomeFirstResponder()
+    }
+    
+    // Focus on name on touch return button.
+    @IBAction func passwordDidEndOnExit(_ sender: UITextField) {
+        self.nameTextfield.becomeFirstResponder()
+    }
+    
+    // Dissmiss keyboad on touch finish button.
+    @IBAction func usernameDidEndOnExit(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
     
     @IBAction func onTouchRegisterButton(_ sender: AnyObject) {
         SVProgressHUD.show()
@@ -45,7 +69,6 @@ class RegisterViewController: UIViewController {
                 }
                 
                 // Login and go to chat View.
-               /* self.performSegue(withIdentifier: "goToChat", sender: self)*/
             }
             SVProgressHUD.dismiss()
         })

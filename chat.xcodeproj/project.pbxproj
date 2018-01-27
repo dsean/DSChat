@@ -16,6 +16,7 @@
 		9F04750B201B7A250094FE8C /* DSChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04750A201B7A250094FE8C /* DSChatViewController.swift */; };
 		9F04750D201B7CE60094FE8C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04750C201B7CE60094FE8C /* RegisterViewController.swift */; };
 		9F04750F201B7D580094FE8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F04750E201B7D580094FE8C /* GoogleService-Info.plist */; };
+		9F047511201B8D130094FE8C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F047510201B8D130094FE8C /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		9F04750A201B7A250094FE8C /* DSChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSChatViewController.swift; sourceTree = "<group>"; };
 		9F04750C201B7CE60094FE8C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9F04750E201B7D580094FE8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F047510201B8D130094FE8C /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D304923AB6C6910E173E5A67 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 		9F047509201B7A250094FE8C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9F047510201B8D130094FE8C /* LogInViewController.swift */,
 				9F04750C201B7CE60094FE8C /* RegisterViewController.swift */,
 				9F04750A201B7A250094FE8C /* DSChatViewController.swift */,
 			);
@@ -313,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F047511201B8D130094FE8C /* LogInViewController.swift in Sources */,
 				9F04750D201B7CE60094FE8C /* RegisterViewController.swift in Sources */,
 				9F04750B201B7A250094FE8C /* DSChatViewController.swift in Sources */,
 				9F0474E9201B705D0094FE8C /* AppDelegate.swift in Sources */,
