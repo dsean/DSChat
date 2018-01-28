@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class Utilities: NSObject {
 
+    // Check username.
     class func checkUsername (username:String) -> Bool {
         if username.count < 1 || username.count > 32 {
             return false
@@ -27,6 +29,7 @@ class Utilities: NSObject {
         }
     }
     
+    // Check password.
     class func checkPassword (password:String) -> Bool {
         if password.count < 6 || password.count > 32 {
             return false
@@ -43,6 +46,7 @@ class Utilities: NSObject {
         }
     }
     
+    // Check email.
     class func checkEmail(email:String) -> Bool {
         
         let mailPattern = "^[A-Za-z0-9._-]+@[a-z0-9.-]+.[a-z]{2,4}$"
@@ -56,6 +60,7 @@ class Utilities: NSObject {
         }
     }
     
+    // Match string.
     class func matches(for regex: String, in text: String) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex)
@@ -76,5 +81,39 @@ class Utilities: NSObject {
         let detailViewController = (storyboard.instantiateViewController(withIdentifier: "ChatViewControllerCV") as? ChatViewController)!
         detailViewController.hidesBottomBarWhenPushed = true
         controller.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    //MARK: - Firebase
+    
+    // Register use firebase.
+    class func register(email: String, password: String, username: String, callback: @escaping (_ success: Bool) -> Void) {
+        // Check email password and username.
+        
+        if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) && Utilities.checkUsername(username: username) {
+            
+            // Register with email and password.
+            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                callback(error == nil)
+            }
+        }
+        else {
+            callback(false)
+        }
+    }
+    
+    // Login use firebase.
+    class func login(email: String, password: String, callback: @escaping (_ success: Bool) -> Void) {
+        // Check email and password.
+        
+        if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) {
+            
+            // Login with email and password.
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                callback(error == nil)
+            }
+        }
+        else {
+            callback(false)
+        }
     }
 }
