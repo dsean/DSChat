@@ -82,6 +82,8 @@ class LogInViewController: UIViewController {
     }
     
     func onlogin(email: String, password: String, callback: @escaping (_ success: Bool) -> Void) {
+        // Check email and password.
+        
         if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) {
             
             // Login with email and password.

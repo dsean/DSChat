@@ -11,13 +11,7 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-protocol RegisterViewControllerDelegate {
-    func onRegister(isSuccess:Bool)
-}
-
-class RegisterViewController: UIViewController, RegisterViewControllerDelegate {
-    
-    var delegate:RegisterViewControllerDelegate?
+class RegisterViewController: UIViewController {
     
     // Textfields Pre-linked IBOutlets
     @IBOutlet var emailTextfield: UITextField!
@@ -33,7 +27,6 @@ class RegisterViewController: UIViewController, RegisterViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +64,7 @@ class RegisterViewController: UIViewController, RegisterViewControllerDelegate {
         SVProgressHUD.show()
         self.messageLabel.text = ""
         dissmissKeyboad()
-        register()
+        register(email: emailTextfield.text!, password: passwordTextfield.text!, username: nameTextfield.text!)
     }
     
     // MARK: function
@@ -82,48 +75,40 @@ class RegisterViewController: UIViewController, RegisterViewControllerDelegate {
         self.nameTextfield.resignFirstResponder()
     }
     
-    func register() {
-        if Utilities.checkEmail(email: emailTextfield.text!) && Utilities.checkPassword(password: passwordTextfield.text!) && Utilities.checkUsername(username: self.nameTextfield.text!) {
-            
-            // Register with email and password.
-            Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: { (user, error) in
-                if error != nil {
-                    
-                    // Register fail.
-                    print(error!)
-                    
-                    self.errorMessage = "Invalid email , password or username"
-                    self.delegate?.onRegister(isSuccess: false)
-                }
-                else {
-                    self.errorMessage = ""
-                    self.delegate?.onRegister(isSuccess: true)
-                }
-            })
-        }
-        else {
-            print("Invalid email , password or username")
-            self.errorMessage = "Invalid email , password or username"
-            self.delegate?.onRegister(isSuccess: false)
-        }
-    }
-    
-    func onRegister(isSuccess:Bool) {
-        DispatchQueue.main.async {
-            if isSuccess {
-                
+    func register(email: String, password: String, username: String) {
+        onRegister(email: email, password: password, username: username, callback:{(success) in
+            if success {
                 // Register success.
                 print("Registration successful!")
+                self.errorMessage = ""
                 if let user = Auth.auth().currentUser {
                     // Save Register id and username
                     Database.database().reference(withPath: "ID/\(user.uid)/Profile/Name").setValue(self.nameTextfield.text!)
+                    
+                    // Login and go to chat View.
+                    Utilities.goToChatView(controller:self)
                 }
-                
-                // Login and go to chat View.
-                Utilities.goToChatView(controller:self)
+            }
+            else {
+                self.errorMessage = "Invalid email , password or username"
             }
             self.messageLabel.text = self.errorMessage
             SVProgressHUD.dismiss()
+        })
+    }
+    
+    func onRegister(email: String, password: String, username: String, callback: @escaping (_ success: Bool) -> Void) {
+        // Check email password and username.
+        
+        if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) && Utilities.checkUsername(username: username) {
+            
+            // Register with email and password.
+            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                callback(error == nil)
+            }
+        }
+        else {
+            callback(false)
         }
     }
 }

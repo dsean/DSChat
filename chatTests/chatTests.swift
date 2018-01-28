@@ -58,7 +58,7 @@ class chatTests: XCTestCase {
     }
     
     func testLogin() {
-        let expect = expectation(description: "Should login fail")
+        let expect = expectation(description: "Should login success")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailViewController = (storyboard.instantiateViewController(withIdentifier: "LoginViewControllerCV") as? LogInViewController)!
@@ -67,8 +67,32 @@ class chatTests: XCTestCase {
             if success {
                 expect.fulfill()
             } else {
-                XCTFail("Invalid username or email")
+                XCTFail("Invalid username or password")
             }
+        })
+        
+        waitForExpectations(timeout: 2.0) { (err) in
+            if err != nil {
+                XCTFail("timeout")
+            }
+        }
+    }
+    
+    func testRegister() {
+        let expect = expectation(description: "Should register fail")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = (storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerCV") as? RegisterViewController)!
+        
+        detailViewController.onRegister(email: "a1@gmail.com", password: "123456", username: "a1", callback: { (success) in
+            if success {
+                XCTFail("register suceess")
+            }
+            else {
+                XCTAssertFalse(success)
+                expect.fulfill()
+            }
+            
         })
         
         waitForExpectations(timeout: 2.0) { (err) in
