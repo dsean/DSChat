@@ -14,7 +14,6 @@ class chatTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
     }
     
     override func tearDown() {
@@ -56,5 +55,26 @@ class chatTests: XCTestCase {
         XCTAssertFalse(Utilities.checkEmail(email: "a1@gmail.A"))
         XCTAssertFalse(Utilities.checkEmail(email: "a1gmail.com"))
         XCTAssertFalse(Utilities.checkEmail(email: ""))
+    }
+    
+    func testLogin() {
+        let expect = expectation(description: "Should login fail")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = (storyboard.instantiateViewController(withIdentifier: "LoginViewControllerCV") as? LogInViewController)!
+        
+        detailViewController.onlogin(email: "a1@gmail.com", password: "123456", callback: { (success) in
+            if success {
+                expect.fulfill()
+            } else {
+                XCTFail("Invalid username or email")
+            }
+        })
+        
+        waitForExpectations(timeout: 2.0) { (err) in
+            if err != nil {
+                XCTFail("timeout")
+            }
+        }
     }
 }
