@@ -65,7 +65,7 @@ class LogInViewController: UIViewController {
     }
     
     func login(email:String, password:String) {
-        onlogin(email: email, password: password, callback: {(success) in
+        Utilities.login(email: email, password: password, callback: {(success) in
             if success {
                 // Login fail
                 self.errorMessage = "Invalid email or password"
@@ -79,20 +79,5 @@ class LogInViewController: UIViewController {
             self.messageLabel.text = self.errorMessage
             SVProgressHUD.dismiss()
         })
-    }
-    
-    func onlogin(email: String, password: String, callback: @escaping (_ success: Bool) -> Void) {
-        // Check email and password.
-        
-        if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) {
-            
-            // Login with email and password.
-            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                callback(error == nil)
-            }
-        }
-        else {
-            callback(false)
-        }
     }
 }  

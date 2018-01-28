@@ -76,7 +76,7 @@ class RegisterViewController: UIViewController {
     }
     
     func register(email: String, password: String, username: String) {
-        onRegister(email: email, password: password, username: username, callback:{(success) in
+        Utilities.register(email: email, password: password, username: username, callback:{(success) in
             if success {
                 // Register success.
                 print("Registration successful!")
@@ -95,20 +95,5 @@ class RegisterViewController: UIViewController {
             self.messageLabel.text = self.errorMessage
             SVProgressHUD.dismiss()
         })
-    }
-    
-    func onRegister(email: String, password: String, username: String, callback: @escaping (_ success: Bool) -> Void) {
-        // Check email password and username.
-        
-        if Utilities.checkEmail(email: email) && Utilities.checkPassword(password: password) && Utilities.checkUsername(username: username) {
-            
-            // Register with email and password.
-            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                callback(error == nil)
-            }
-        }
-        else {
-            callback(false)
-        }
     }
 }
